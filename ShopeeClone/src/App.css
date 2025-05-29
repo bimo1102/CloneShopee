@@ -5,7 +5,9 @@
   padding: 2rem;
   text-align: center;
 }
-
+@theme {
+  --color-orange: #ee4d2d;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
