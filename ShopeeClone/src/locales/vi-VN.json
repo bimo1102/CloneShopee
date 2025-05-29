@@ -1,0 +1,20 @@
+{
+  "form": {
+    "emailRequired": "Email là bắt buộc",
+    "emailInvalid": "Email không hợp lệ",
+    "emailMax": "Email phải ít hơn 160 ký tự",
+    "emailMin": "Email phải dài ít nhất 6 ký tự",
+    "emailWhitespace": "Không được nhập toàn khoảng trắng ở email",
+
+    "passwordRequired": "Mật khẩu là bắt buộc",
+    "passwordMax": "Mật khẩu phải ít hơn 160 ký tự",
+    "passwordMin": "Mật khẩu phải dài ít nhất 6 ký tự",
+    "passwordWhitespace": "Không được nhập toàn khoảng trắng ở mật khẩu",
+
+    "confirmPasswordRequired": "Xác nhận mật khẩu là bắt buộc",
+    "confirmPasswordMax": "Xác nhận mật khẩu phải ít hơn 160 ký tự",
+    "confirmPasswordMin": "Xác nhận mật khẩu phải dài ít nhất 6 ký tự",
+    "confirmPasswordWhitespace": "Không được nhập toàn khoảng trắng ở xác nhận mật khẩu",
+    "confirmPasswordNotMatch": "Xác nhận mật khẩu không khớp"
+  }
+}

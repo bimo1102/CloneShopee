@@ -1,9 +1,12 @@
 import { RegisterOptions, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { FormData } from 'src/domain/models/IRegister'
-import { rules } from 'src/utils/rules'
+import { createRules } from 'src/utils/rules'
 
 export default function Register() {
+  const { t } = useTranslation()
+  const rules = createRules(t)
   const {
     register,
     handleSubmit,
@@ -16,7 +19,7 @@ export default function Register() {
   return (
     <div className='bg-orange'>
       <div className='max-w-7xl mx-auto px-4'>
-        <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-32 lg:pr-10'>
+        <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-32 lg:pr-10 py-3'>
           <div className='lg:col-span-2 lg:col-start-4'>
             <form className='p-10 rounded bg-white shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Đăng ký</div>
@@ -48,7 +51,7 @@ export default function Register() {
                     rules.confirmPassword as RegisterOptions<FormData, 'confirmPassword'>
                   )}
                 />
-                <div className='mt-1 text-red-600 min-h-[1.25rem] text-sm'></div>
+                <div className='mt-1 text-red-600 min-h-[1.25rem] text-sm'>{errors.confirmPassword?.message}</div>
               </div>
               <div className='mt-2'>
                 <button

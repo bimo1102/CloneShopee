@@ -1,0 +1,20 @@
+{
+  "form": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "emailMax": "Email must be less than 160 characters",
+    "emailMin": "Email must be at least 6 characters long",
+    "emailWhitespace": "Email cannot be only whitespace",
+
+    "passwordRequired": "Password is required",
+    "passwordMax": "Password must be less than 160 characters",
+    "passwordMin": "Password must be at least 6 characters long",
+    "passwordWhitespace": "Password cannot be only whitespace",
+
+    "confirmPasswordRequired": "Confirm password is required",
+    "confirmPasswordMax": "Confirm password must be less than 160 characters",
+    "confirmPasswordMin": "Confirm password must be at least 6 characters long",
+    "confirmPasswordWhitespace": "Confirm password cannot be only whitespace",
+    "confirmPasswordNotMatch": "Confirm password does not match password"
+  }
+}
