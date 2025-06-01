@@ -16,5 +16,21 @@
     "confirmPasswordMin": "Confirm password must be at least 6 characters long",
     "confirmPasswordWhitespace": "Confirm password cannot be only whitespace",
     "confirmPasswordNotMatch": "Confirm password does not match password"
+  },
+  "login": {
+    "title": "Login",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "submitButton": "Login",
+    "forgotPasswordLink": "Forgot password?",
+    "registerLink": "Don't have an account? Register"
+  },
+  "register": {
+    "title": "Register",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "submitButton": "Register",
+    "loginLink": "Already have an account?"
   }
 }

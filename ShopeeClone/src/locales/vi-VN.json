@@ -16,5 +16,21 @@
     "confirmPasswordMin": "Xác nhận mật khẩu phải dài ít nhất 6 ký tự",
     "confirmPasswordWhitespace": "Không được nhập toàn khoảng trắng ở xác nhận mật khẩu",
     "confirmPasswordNotMatch": "Xác nhận mật khẩu không khớp"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "emailLabel": "Email",
+    "passwordLabel": "Mật khẩu",
+    "submitButton": "Đăng nhập",
+    "forgotPasswordLink": "Quên mật khẩu?",
+    "registerLink": "Chưa có tài khoản? Đăng ký"
+  },
+  "register": {
+    "title": "Đăng ký",
+    "emailLabel": "Email",
+    "passwordLabel": "Mật khẩu",
+    "confirmPasswordLabel": "Xác nhận mật khẩu",
+    "submitButton": "Đăng ký",
+    "loginLink": "Đã có tài khoản?"
   }
 }
