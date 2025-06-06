@@ -1,22 +1,72 @@
 import { useEffect, useMemo } from 'react'
-import { RegisterOptions, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useMutation } from '@tanstack/react-query'
+
+import { Schema } from 'src/utils/yupSchema'
+import { schemaWithMessages } from 'src/utils/yupResolverWithI18n'
 import Input from 'src/components/input'
-import { FormData } from 'src/domain/models/IRegister'
-import { createRules } from 'src/utils/rules'
+import { registerAccount } from 'src/types/auth.api'
+import { omit } from 'lodash'
+import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
+import { ResponseApi } from 'src/types/utilss.type'
+
+type FormData = Pick<Schema, 'email' | 'password' | 'confirmPassword'>
 
 export default function Register() {
   const { t, i18n } = useTranslation()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const rules = useMemo(() => createRules(t), [t, i18n.language])
+  const schemaWithT = useMemo(() => schemaWithMessages(t), [t])
+  const registerSchema = useMemo(() => schemaWithT.pick(['email', 'password', 'confirmPassword']), [schemaWithT])
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitted },
-    trigger
-  } = useForm<FormData>()
+    trigger,
+    setError
+  } = useForm<FormData>({
+    resolver: yupResolver(registerSchema)
+  })
+
+  const registerAccountMutation = useMutation({
+    mutationFn: (body: Omit<FormData, 'confirmPassword'>) => registerAccount(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
+    const body = omit(data, ['confirmPassword'])
+    registerAccountMutation.mutate(body, {
+      onSuccess: (response) => {
+        console.log('Registration successful:', response)
+      },
+      onError: (error) => {
+        if (isAxiosUnprocessableEntityError<ResponseApi<Omit<FormData, 'confirmPassword'>>>(error)) {
+          console.log(isAxiosUnprocessableEntityError(error))
+          const formErrors = error.response?.data.data
+          if (formErrors) {
+            Object.keys(formErrors).forEach((key) => {
+              setError(key as keyof Omit<FormData, 'confirmPassword'>, {
+                type: 'Server',
+                message: formErrors[key as keyof Omit<FormData, 'confirmPassword'>]
+              })
+            })
+          }
+          // if (formErrors?.email) {
+          //   setError('email', {
+          //     type: 'manual',
+          //     message: t('form.emailAlreadyExists')
+          //   })
+          // }
+          // if (formErrors?.password) {
+          //   setError('password', {
+          //     type: 'manual',
+          //     message: formErrors.password
+          //   })
+          // }
+        }
+        console.error('Registration failed:', error)
+      }
+    })
     console.log(data)
   })
 
@@ -24,7 +74,7 @@ export default function Register() {
     if (isSubmitted) {
       trigger()
     }
-  }, [i18n.language, trigger])
+  }, [i18n.language, trigger, isSubmitted])
 
   return (
     <div className='bg-orange'>
@@ -39,7 +89,6 @@ export default function Register() {
                 placeholder='Email'
                 name='email'
                 register={register}
-                rules={rules.email as RegisterOptions<FormData, 'email'>}
                 errorMessage={errors.email?.message}
               />
               <Input
@@ -49,7 +98,6 @@ export default function Register() {
                 autoComplete='on'
                 name='password'
                 register={register}
-                rules={rules.password as RegisterOptions<FormData, 'password'>}
                 errorMessage={errors.password?.message}
               />
               <Input
@@ -59,7 +107,6 @@ export default function Register() {
                 autoComplete='on'
                 name='confirmPassword'
                 register={register}
-                rules={rules.confirmPassword as RegisterOptions<FormData, 'confirmPassword'>}
                 errorMessage={errors.confirmPassword?.message}
               />
               <div className='mt-2'>

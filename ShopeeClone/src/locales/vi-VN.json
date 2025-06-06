@@ -5,6 +5,7 @@
     "emailMax": "Email phải ít hơn 160 ký tự",
     "emailMin": "Email phải dài ít nhất 6 ký tự",
     "emailWhitespace": "Không được nhập toàn khoảng trắng ở email",
+    "emailAlreadyExists": "Email đã tồn tại",
 
     "passwordRequired": "Mật khẩu là bắt buộc",
     "passwordMax": "Mật khẩu phải ít hơn 160 ký tự",

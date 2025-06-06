@@ -5,6 +5,7 @@
     "emailMax": "Email must be less than 160 characters",
     "emailMin": "Email must be at least 6 characters long",
     "emailWhitespace": "Email cannot be only whitespace",
+    "emailAlreadyExists": "Email already exists",
 
     "passwordRequired": "Password is required",
     "passwordMax": "Password must be less than 160 characters",

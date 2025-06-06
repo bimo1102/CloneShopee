@@ -9,7 +9,7 @@ interface InputProps<T extends FieldValues> {
   className?: string
   name: Path<T>
   register: UseFormRegister<T>
-  rules: RegisterOptions<T>
+  rules?: RegisterOptions<T>
   autoComplete?: string
 }
 export default function Input<T extends FieldValues>({
